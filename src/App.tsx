@@ -55,25 +55,30 @@ function setLocalStorage(visits: string, timeout: string) {
     localStorage.setItem("timeout", timeout);
 }
 
-function rylieVisitTimeout(setHeadline: { (value: React.SetStateAction<string>): void; (arg0: string): void; }) {
+function rylieVisitTimeout(setHeadline: any) {
     var storage = getLocalStorage();
     var today = new Date();
-    if (storage[0] === null) {
-        setLocalStorage("1", (today.getDate()+1).toString());
-    } else {
-        var temp = Number(storage[0]);
-        setLocalStorage(String(++temp), (today.getDate()+1).toString());
-    }
-
+    var tomorrow = (today.getDate()+1).toString();
+    console.log(storage);
     if (Number(storage[0]) > 5) {
         setHeadline("You dumb slut you actually have visited this page too many times today");
+        if(Number(storage[1]) < Number(today)) {
+            setLocalStorage("0", tomorrow);
+        }
+    }
+
+    if (storage[0] === null) {
+        setLocalStorage("1", tomorrow);
+    } else {
+        var temp = Number(storage[0]);
+        setLocalStorage(String(++temp), tomorrow);
     }
 }
 
 
 function App() {
     const [headline, setHeadline] = useState("Rylie Vey won a spelling bee in the 7th grade");
-    
+
     useEffect(() =>{
        tossConfetti();
        rylieVisitTimeout(setHeadline);
