@@ -33,6 +33,7 @@ const Content = styled.div`
 `;
 
 function tossConfetti() {
+
     function randomInRange(min: number, max: number) {
         return Math.random() * (max - min) + min;
     }
@@ -46,7 +47,6 @@ function tossConfetti() {
 }
 
 function getLocalStorage() {
-    console.log("Visits ", localStorage.getItem("Visits")," Time ", localStorage.getItem("timeout"));
     return [localStorage.getItem("Visits"), localStorage.getItem("timeout")];
 }
 
@@ -57,12 +57,13 @@ function setLocalStorage(visits: string, timeout: string) {
 
 function rylieVisitTimeout(setHeadline: any) {
     var storage = getLocalStorage();
+
     var today = new Date();
     var tomorrow = (today.getDate()+1).toString();
-    console.log(storage);
     if (Number(storage[0]) > 5) {
-        setHeadline("You dumb slut you actually have visited this page too many times today");
-        if(Number(storage[1]) < Number(today)) {
+        setHeadline(`Only a dumb slut like Rylie would visit this page ${storage[0]} 
+        times today, maybe give it a break and stop thinking about yourself so much`);
+        if(Number(storage[1]) <= Number(today)) {
             setLocalStorage("0", tomorrow);
         }
     }
@@ -78,14 +79,18 @@ function rylieVisitTimeout(setHeadline: any) {
 
 function App() {
     const [headline, setHeadline] = useState("Rylie Vey won a spelling bee in the 7th grade");
+    const [confettiClicks, setConfettiClicks] = useState(0);
 
     useEffect(() =>{
        tossConfetti();
        rylieVisitTimeout(setHeadline);
-    });
+    }, []);
 
     return (
-      <Page className="App" height={`${window.outerHeight}px`} onClick={() => {tossConfetti()}}>
+      <Page className="App" height={`${window.outerHeight}px`} onClick={() => {
+          tossConfetti();
+          setConfettiClicks(confettiClicks+1);
+      }} >
           <Content>
              <Header>{headline}</Header>
              <Image src={logo} className="rylie-spelling" alt="logo" />
