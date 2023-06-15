@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import logo from './rylie.jpg';
 import styled from "styled-components";
 import confetti from "canvas-confetti";
@@ -32,26 +32,61 @@ const Content = styled.div`
   padding-bottom: 10em;
 `;
 
-function App() {
-  return (
-    <Page className="App" height={`${window.outerHeight}px`} onClick={() => {
-        function randomInRange(min: number, max: number) {
-            return Math.random() * (max - min) + min;
-        }
+function tossConfetti() {
+    function randomInRange(min: number, max: number) {
+        return Math.random() * (max - min) + min;
+    }
 
-        confetti({
-            angle: randomInRange(55, 125),
-            spread: randomInRange(50, 70),
-            particleCount: randomInRange(50, 100),
-            origin: { y: 0.6 }
-        });
-    }}>
-        <Content>
-            <Header>Rylie Vey won a spelling bee in the 7th grade</Header>
-            <Image src={logo} className="rylie-spelling" alt="logo" />
-        </Content>
-    </Page>
-  );
+    confetti({
+        angle: randomInRange(55, 125),
+        spread: randomInRange(50, 70),
+        particleCount: randomInRange(50, 100),
+        origin: { y: 0.6 }
+    });
+}
+
+function getLocalStorage() {
+    console.log("Visits ", localStorage.getItem("Visits")," Time ", localStorage.getItem("timeout"));
+    return [localStorage.getItem("Visits"), localStorage.getItem("timeout")];
+}
+
+function setLocalStorage(visits: string, timeout: string) {
+    localStorage.setItem("Visits", visits);
+    localStorage.setItem("timeout", timeout);
+}
+
+function rylieVisitTimeout(setHeadline: { (value: React.SetStateAction<string>): void; (arg0: string): void; }) {
+    var storage = getLocalStorage();
+    var today = new Date();
+    if (storage[0] === null) {
+        setLocalStorage("1", (today.getDate()+1).toString());
+    } else {
+        var temp = Number(storage[0]);
+        setLocalStorage(String(++temp), (today.getDate()+1).toString());
+    }
+
+    if (Number(storage[0]) > 5) {
+        setHeadline("You dumb slut you actually have visited this page too many times today");
+    }
+}
+
+
+function App() {
+    const [headline, setHeadline] = useState("Rylie Vey won a spelling bee in the 7th grade");
+    
+    useEffect(() =>{
+       tossConfetti();
+       rylieVisitTimeout(setHeadline);
+    });
+
+    return (
+      <Page className="App" height={`${window.outerHeight}px`} onClick={() => {tossConfetti()}}>
+          <Content>
+             <Header>{headline}</Header>
+             <Image src={logo} className="rylie-spelling" alt="logo" />
+          </Content>
+      </Page>
+    );
 }
 
 export default App;
