@@ -45,6 +45,7 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^2.2.0"
     "@types/canvas-confetti": "^1.6.0"
   }
 }
