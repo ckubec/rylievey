@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import logo from './rylie.jpg';
 import styled from "styled-components";
+import {useSwipeable} from 'react-swipeable';
 import confetti from "canvas-confetti";
 
 interface PageProps {
@@ -33,7 +34,6 @@ const Content = styled.div`
 `;
 
 function tossConfetti() {
-
     function randomInRange(min: number, max: number) {
         return Math.random() * (max - min) + min;
     }
@@ -60,7 +60,7 @@ function rylieVisitTimeout(setHeadline: any) {
 
     var today = new Date();
     var tomorrow = (today.getDate()+1).toString();
-    if (Number(storage[0]) > 5) {
+    if (Number(storage[0]) > 3) {
         setHeadline(`Only a dumb slut like Rylie would visit this page ${storage[0]} 
         times today, maybe give it a break and stop thinking about yourself so much`);
         if(Number(storage[1]) <= Number(today)) {
@@ -86,8 +86,14 @@ function App() {
        rylieVisitTimeout(setHeadline);
     }, []);
 
+    const handlers = useSwipeable({
+        onSwipedLeft: () => {
+            //console.log('User swiped to the left!');
+        }
+    });
+
     return (
-      <Page className="App" height={`${window.outerHeight}px`} onClick={() => {
+      <Page className="App" {...handlers} height={`${window.outerHeight}px`} onClick={() => {
           tossConfetti();
           setConfettiClicks(confettiClicks+1);
       }} >

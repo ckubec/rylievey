@@ -31,8 +31,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          path: main
       - name: Setup Pages
         uses: actions/configure-pages@v3
+      - name: Build Page
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm ci
+      - run: npm build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
