@@ -6,25 +6,23 @@
     "@types/node": "^20.4.2",
     "@types/react": "^18.2.11",
     "@types/react-dom": "^18.2.4",
+    "@vitejs/plugin-react": "^4.3.1",
     "canvas-confetti": "^1.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "^5.0.1",
     "react-swipeable": "^7.0.1",
-    "styled-components": "^6.0.0-rc.3",
+    "tailwind": "^4.0.0",
     "typescript": "^5.1.6",
+    "vite": "^5.3.1",
+    "vite-tsconfig-paths": "^4.3.2",
     "web-vitals": "^2.1.4"
-  },
-  "overrides": {
-    "typescript": "^5.1.6"
   },
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
   "eslintConfig": {
     "extends": [
@@ -46,6 +44,9 @@
   },
   "devDependencies": {
     "@types/canvas-confetti": "^1.6.0",
-    "gh-pages": "^5.0.0"
+    "autoprefixer": "^10.4.19",
+    "gh-pages": "^5.0.0",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4"
   }
 }

@@ -1,37 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import logo from './rylie.jpg';
-import styled from "styled-components";
 import {useSwipeable} from 'react-swipeable';
 import confetti from "canvas-confetti";
-
-interface PageProps {
-    height: string;
-}
-
-const Image = styled.img`
-  width: 100%;
-`;
-
-const Header = styled.h1`
-  color: white;
-  font-family: "Comic Sans MS";
-  padding-bottom: .5em;
-`;
-
-const Page = styled.div<PageProps>`
-  height: ${props => props.height};
-  width: 100%;
-  display: flex;
-  align-content: center;
-`;
-
-const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  justify-content: center;
-  padding-bottom: 10em;
-`;
 
 function tossConfetti() {
     function randomInRange(min: number, max: number) {
@@ -78,7 +48,7 @@ function rylieVisitTimeout(setHeadline: any) {
 
 
 function App() {
-    const [headline, setHeadline] = useState("Rylie Vey won a spelling bee in the 7th grade");
+    const [headline, setHeadline] = useState("Rylie Vey won a spelling bee in the 7th grade... And maybe she lost in the 8th grade but at least she redeemed herself at her 30th birthday party after spelling mistral correctly instead of menstrual");
     const [confettiClicks, setConfettiClicks] = useState(0);
 
     useEffect(() =>{
@@ -93,15 +63,28 @@ function App() {
     });
 
     return (
-      <Page className="App" {...handlers} height={`${window.outerHeight}px`} onClick={() => {
-          tossConfetti();
-          setConfettiClicks(confettiClicks+1);
-      }} >
-          <Content>
-             <Header>{headline}</Header>
-             <Image src={logo} className="rylie-spelling" alt="logo" />
-          </Content>
-      </Page>
+      <div className={'min-h-lvh w-full bg-background'}>
+        <div className={'p-4 flex justify-center container mx-auto'}>
+          <header className={'w-full tablet:w-2/3 text-shadow font-title h-fit text-center text-6xl p-5 bg-title rounded-2xl shadow-[8px_8px_0px_rgba(0,0,0,1)] text-white'}>
+            Rylie Slay's Site
+          </header>
+        </div>
+        <div className="mx-auto grid max-mobile:p-3 tablet:place-items-center place-content-center gap-4 container" {...handlers}
+          onClick={() => {
+            tossConfetti();
+            setConfettiClicks(confettiClicks + 1);
+          }}>
+          <div className={'flex flex-col gap-4 '}>
+            <img src={logo} className="w-full rounded shadow-[8px_8px_0px_rgba(0,0,0,1)]"
+                 alt="logo">
+
+            </img>
+            <div className={'font-body p-4 w-full text-white text-center shadow-[8px_8px_0px_rgba(0,0,0,1)] bg-body rounded text-2xl'}>
+              {headline}
+            </div>
+          </div>
+        </div>
+      </div>
     );
 }
 
