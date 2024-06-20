@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@font-face {
+    font-family: 'Motley Forces';
+    src: local('Motley Forces'), url('https://fonts.cdnfonts.com/s/90691/MotleyForcesRegular-w1rZ3.woff') format('woff');
+    font-display: swap;
+}
