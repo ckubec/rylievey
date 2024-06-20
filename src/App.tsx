@@ -49,7 +49,7 @@ function rylieVisitTimeout(setHeadline: any) {
 
 
 function App() {
-    const [headline, setHeadline] = useState("Rylie Vey won a spelling bee in the 7th grade... And maybe she lost in the 8th grade but at least she redeemed herself at her 30th birthday party after spelling mistral correctly instead of menstrual");
+    const [headline, setHeadline] = useState("Rylie Vey won a spelling bee in the 7th grade... And she may have lost at the County level, but at least she redeemed herself at her 30th birthday party after spelling minstrel correctly instead of menstrual");
     const [confettiClicks, setConfettiClicks] = useState(0);
 
     useEffect(() =>{
