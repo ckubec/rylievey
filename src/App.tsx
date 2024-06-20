@@ -26,11 +26,11 @@ function setLocalStorage(visits: string, timeout: string) {
 }
 
 function rylieVisitTimeout(setHeadline: any) {
-    var storage = getLocalStorage();
+  const storage = getLocalStorage();
 
-    var today = new Date();
-    var tomorrow = (today.getDate()+1).toString();
-    if (Number(storage[0]) >= 3) {
+  const today = new Date();
+  const tomorrow = (today.getDate() + 1).toString();
+  if (Number(storage[0]) >= 3) {
         setHeadline(`Only a dumb slut like Rylie would visit this page ${storage[0]} 
         times today, maybe give it a break and stop thinking about yourself so much`);
         if(Number(storage[1]) <= Number(today)) {
@@ -75,7 +75,7 @@ function App() {
             setConfettiClicks(confettiClicks + 1);
           }}>
           <div className={'flex flex-col gap-4 '}>
-            <img src={logo} className="w-full rounded shadow-[8px_8px_0px_rgba(0,0,0,1)]"
+            <img src={logo} className="w-full rounded shadow-[8px_8px_0px_rgba(0,0,0,1)]" loading={'lazy'}
                  alt="logo">
 
             </img>
