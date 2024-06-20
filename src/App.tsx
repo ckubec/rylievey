@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import logo from './rylie.jpg';
+import logo_small from './rylie-mobile.jpg';
 import {useSwipeable} from 'react-swipeable';
 import confetti from "canvas-confetti";
 
@@ -75,7 +76,7 @@ function App() {
             setConfettiClicks(confettiClicks + 1);
           }}>
           <div className={'flex flex-col gap-4 '}>
-            <img src={logo} className="w-full rounded shadow-[8px_8px_0px_rgba(0,0,0,1)]" alt="logo">
+            <img srcSet={`${logo_small} 480w, ${logo} 1000w`} src={logo} sizes="(max-width: 480px) 480px, (max-width: 1000px) 1000px, 2000px" className="w-full rounded shadow-[8px_8px_0px_rgba(0,0,0,1)]" alt="logo">
 
             </img>
             <div className={'font-body p-4 w-full text-black text-center shadow-[8px_8px_0px_rgba(0,0,0,1)] bg-body rounded text-2xl'}>
