@@ -75,8 +75,7 @@ function App() {
             setConfettiClicks(confettiClicks + 1);
           }}>
           <div className={'flex flex-col gap-4 '}>
-            <img src={logo} className="w-full rounded shadow-[8px_8px_0px_rgba(0,0,0,1)]" loading={'lazy'}
-                 alt="logo">
+            <img src={logo} className="w-full rounded shadow-[8px_8px_0px_rgba(0,0,0,1)]" alt="logo">
 
             </img>
             <div className={'font-body p-4 w-full text-white text-center shadow-[8px_8px_0px_rgba(0,0,0,1)] bg-body rounded text-2xl'}>
