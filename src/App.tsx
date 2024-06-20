@@ -78,7 +78,7 @@ function App() {
             <img src={logo} className="w-full rounded shadow-[8px_8px_0px_rgba(0,0,0,1)]" alt="logo">
 
             </img>
-            <div className={'font-body p-4 w-full text-white text-center shadow-[8px_8px_0px_rgba(0,0,0,1)] bg-body rounded text-2xl'}>
+            <div className={'font-body p-4 w-full text-black text-center shadow-[8px_8px_0px_rgba(0,0,0,1)] bg-body rounded text-2xl'}>
               {headline}
             </div>
           </div>
